@@ -17,7 +17,7 @@ setup(
     url='http://github.com/powderflask/cmsplugin-menus',
     packages=find_packages(),
     keywords='menu navigation links django cms django-cms',
-    long_description=read('README'),
+    long_description=read('README.rst'),
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Environment :: Web Environment',
