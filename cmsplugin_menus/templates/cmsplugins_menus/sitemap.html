@@ -1,0 +1,11 @@
+{% comment %}
+   Renders a complete navigation menu of all published CMS pages - a site map
+{% endcomment %}
+
+{% load menu_tags %}               
+
+    <div class="sitemap">
+        {% show_menu 0 100 100 100 %}
+    </div>
+
+

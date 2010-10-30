@@ -17,12 +17,15 @@ class MenuPluginBase(CMSPluginBase):
 
     def get_template_path(template_file):
         return "%s%s"%(CMSPLUGIN_MENS_TEMPLATE_PATH, template_file)
+
+    def render(self, context, instance, placeholder):
+        """ default render for template logic-only plugins """
+        return context
     
 class LinkBlockPlugin(MenuPluginBase):
     model = LinkBlockPtr
     name = _("Custom Menu")
     render_template = self.get_template_path("link_block.html")
-    icon_file = "link_block.png"
     
     def render(self, context, instance, placeholder):
         context.update({
@@ -36,7 +39,7 @@ plugin_pool.register_plugin(LinkBlockPlugin)
 class NavMenuPlugin(MenuPluginBase):
     model = NavMenu
     name = _("Section Nav. Menu")
-    render_template = self.get_template_path("section_nav_menu.html")
+    render_template = self.get_template_path("nav_menu.html")
     
     def render(self, context, instance, placeholder):
         context.update({
@@ -48,18 +51,11 @@ class NavMenuPlugin(MenuPluginBase):
 plugin_pool.register_plugin(NavMenuPlugin)
 
 
-class SitemapPlugin(DCDMenuPlugin):
+class SitemapPlugin(MenuPluginBase):
     """
-        Plugin to display a site map.
+        Plugin to display a basic site map.
     """
     name = _("Sitemap")
-    render_template = DCD_PLUGIN_TEMPLATE_PATH + "sitemap.html"
+    render_template = self.get_template_path("sitemap.html")
 
-    def render(self, context, instance, placeholder):        
-        from dcd_helpers.sitemaps.cms_sitemap import DCDCMSSitemap
-
-        context.update({
-            'pages': DCDCMSSitemap().items(),
-        })
-        return context
-#plugin_pool.register_plugin(SitemapPlugin)
+plugin_pool.register_plugin(SitemapPlugin)
