@@ -3,9 +3,12 @@ from django.utils.translation import ugettext_lazy as _
 from cms.models import CMSPlugin
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
-from dcd_helpers.models import LinkBlockPtr, SectionNavMenu
+from cmsplugin_menus.models import LinkBlockPtr, NavMenu
 
-CMSPLUGIN_MENS_TEMPLATE_PATH = "plugins/cmsplugin_menus/"
+CMSPLUGIN_MENS_TEMPLATE_PATH = "cmsplugin_menus/"
+
+def _get_template_path(template_file):
+    return "%s%s"%(CMSPLUGIN_MENS_TEMPLATE_PATH, template_file)
 
 class MenuPluginBase(CMSPluginBase):
     """
@@ -13,10 +16,7 @@ class MenuPluginBase(CMSPluginBase):
     """
     model = CMSPlugin
     module="Menus"
-    text_enabled = settings.CMSPLUGIN_MENU_TEXT_ENABLED
-
-    def get_template_path(template_file):
-        return "%s%s"%(CMSPLUGIN_MENS_TEMPLATE_PATH, template_file)
+    text_enabled = getattr(settings, "CMSPLUGIN_MENU_TEXT_ENABLED", False);
 
     def render(self, context, instance, placeholder):
         """ default render for template logic-only plugins """
@@ -25,7 +25,7 @@ class MenuPluginBase(CMSPluginBase):
 class LinkBlockPlugin(MenuPluginBase):
     model = LinkBlockPtr
     name = _("Custom Menu")
-    render_template = self.get_template_path("link_block.html")
+    render_template = _get_template_path("link_block.html")
     
     def render(self, context, instance, placeholder):
         context.update({
@@ -39,7 +39,7 @@ plugin_pool.register_plugin(LinkBlockPlugin)
 class NavMenuPlugin(MenuPluginBase):
     model = NavMenu
     name = _("Section Nav. Menu")
-    render_template = self.get_template_path("nav_menu.html")
+    render_template = _get_template_path("nav_menu.html")
     
     def render(self, context, instance, placeholder):
         context.update({
@@ -56,6 +56,6 @@ class SitemapPlugin(MenuPluginBase):
         Plugin to display a basic site map.
     """
     name = _("Sitemap")
-    render_template = self.get_template_path("sitemap.html")
+    render_template = _get_template_path("sitemap.html")
 
 plugin_pool.register_plugin(SitemapPlugin)

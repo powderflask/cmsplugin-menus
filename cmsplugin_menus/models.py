@@ -22,44 +22,37 @@ class LinkBlock(models.Model):
     links = PlaceholderField("custom link block", help_text=_("Add links, e-mails, snippets to the menu."))
 
     def __unicode__(self):
-        return self.name
+        return self.title
 
     class Meta:
-        ordering = ['name']
+        ordering = ['title']
         verbose_name = _("Custom Menu")
         verbose_name_plural = _("Custom Menus")
 reversion_register(LinkBlock)
 
 
-class AbstractMenuPlugin(CMSPlugin):
-    """
-        An abstract base class for the menu plugin classes
-    """
-    collapse = models.BooleanField(_("collapse menu"), default=False, help_text="Select this option if the menu should initially appear collapsed.")
-
-    class Meta:
-        abstract = True
-
-class LinkBlockPtr(AbstractMenuPlugin):
+class LinkBlockPtr(CMSPlugin):
     """
       Plugin model for a Custom Menu (Link Block)
     """
     link_block = models.ForeignKey(LinkBlock)
+    collapse = models.BooleanField(_("collapse menu"), default=False, help_text="Select this option if the menu should initially appear collapsed.")
 
     class Meta:
         verbose_name = _("Custom Menu Plugin Model")
 
     def __unicode__(self):
-        return self.link_block.name
+        return self.link_block.title
 reversion_register(LinkBlockPtr)
 
 
-class NavMenu(AbstractMenuPlugin):
+class NavMenu(CMSPlugin):
     """
        Plugin model for a sub-section navigation menu
     """
     title = models.CharField(_("menu title"), max_length=255, unique=True, db_index=True)
     section = models.ForeignKey(Page, blank=True, null=True, help_text=_("Defaults to the root of current page if left blank."))
+    collapse = models.BooleanField(_("collapse menu"), default=False, help_text="Select this option if the menu should initially appear collapsed.")
 
     class Meta:
         verbose_name = _("Section Nav. Menu")
