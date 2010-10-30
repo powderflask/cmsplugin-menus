@@ -1,0 +1,22 @@
+{% comment %}
+   Renders a navigation menu for specifc sub-section or the root of the current page
+{% endcomment %}
+{% load menu_tags %}               
+
+    <div class="link-block">
+        <div class="title">
+            {{ title }}
+            {% if collapse %} <img src="/media/static/images/icons/expand.png" alt="Expand Menu" title="Hover to expand menu.">{% endif %}
+        </div>
+        <div class="links {% if collapse %} collapse{% endif %}">
+          <ul>
+            {% if subsection %}
+                {% show_menu_below_id subsection.reverse_id %}
+            {% else %}
+                {% show_menu 1 100 0 100 %}
+            {% endif %}
+          </ul>
+        </div>
+    </div>
+
+

@@ -1,0 +1,14 @@
+{% comment %} template for link block plugin {% endcomment %}
+
+{% load placeholder_tags %}               
+
+    <div class="link-block">
+        <div class="title">
+            {{ link_block.title }}
+            {% if collapse %} <img src="/media/static/images/icons/expand.png" alt="[+]" title="Hover to expand menu.">{% endif %}
+        </div>
+        <div class="links {% if collapse %} collapse{% endif %}">
+          {% render_placeholder link_block.links %}
+        </div>
+    </div>
+
