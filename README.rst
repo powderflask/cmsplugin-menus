@@ -25,6 +25,17 @@ Dependencies
 
 None (other than django-cms itself)
 
+License
+=======
+GNU General Public License - see `LICENSE <http://github.com/powderflask/cmsplugin-menus/blob/master/LICENSE>`_
+
+You are free to copy, use, or modify this software in any way you like, but please provide attribution to the original author with a link to:
+http://github.com/powderflask/cmsplugin-menus
+
+Author
+------
+`Driftwood Cove Designs <http://designs.driftwoodcove.ca>`_
+
 Installation
 ============
 
