@@ -10,7 +10,7 @@ Menu types include:
 
 * Custom Menu (Link Block): a re-usable, named block of links and/or snippets.  Useful, for example, for a "Quick Links" block, or other block of links that will be re-used on multiple pages on the site.
 * Section Navigation Menu: display complete, hierarchical navigation (nested lists) for all nodes below a given "root" 
-(any page on site - usually a section page with a child tree).  Useful for adding custom custom navigation blocks.
+  (any page on site - usually a section page with a child tree).  Useful for adding custom custom navigation blocks.
 * Sitemap: simply a complete hierarchical navigation (nested lists) of all pages on the site.
  
 Features
@@ -20,9 +20,8 @@ Features
   Custom Menu's are re-usable so the same menu can be placed on several pages.
 * Nav. Menu: user can select which sub-section of site to create menu for, or use current page's root by default.
 * Both menus have a "collapse" option, which, if selected, adds class="collapse" to the menu so it can be collapsed using CSS or JS.
-* CSS handling collapse/expand logic is included
 * Sitemap: template logic only plugin.
-* Easy to override templates and media
+* Easy to override templates and media - default CSS with collapse/expand logic included.
 * Can use each plugin independently
 
 Dependencies
@@ -62,9 +61,10 @@ Add one or more cmsplugin_menu plugins to your ``INSTALLED_APPS`` in settings.py
 
 INSTALLED_APPS = (..., 
                   cmsplugin_menu.plugins.*,  # installs all menu plugins
-                  )  
+                 )  
 
 OR  pick and choose:
+
 INSTALLED_APPS = (...,
                   cmsplugin_menu.plugins.linkblock,
                   cmsplugin_menu.plugins.navigation,
@@ -84,7 +84,7 @@ In your MEDIA_ROOT, copy or link the cmsplugin_menus media:
 If you want to use the default CSS, which provides basic styles and expand/collapse logic,
 include a link to the css file in your base template (or whichever template will have the menu plugins on them):
 
-* <link rel="stylesheet" type="text/css" href='{{ MEDIA_URL }}cmsplugin_menus/css/cmsplugin_menu.css 'media="all" />
+* <link rel="stylesheet" type="text/css" href='{{ MEDIA_URL }}cmsplugin_menus/css/cmsplugin_menu.css' 'media="all" />
 
 
 Settings
@@ -95,6 +95,7 @@ No settings are required, however, some default settings can be overridden:
 * CMSPLUGIN_MENUS_TEXT_ENABLED = False by default.  Set to True if menus should be available as text plugin.
 
 * CMSPLUGIN_MENUS_PLACEHOLDER_CONF  Limits which plugins are allowed within a Custom Menu (link block)
+
 You can override this setting to change the defaults (LinkPlugin and SnippetPlugin) in your settings like this:
 
 CMSPLUGIN_MENUS_PLACEHOLDER_CONF = {
@@ -104,9 +105,11 @@ CMSPLUGIN_MENUS_PLACEHOLDER_CONF = {
 }}
 
 OR 
+
 CMSPLUGIN_MENUS_PLACEHOLDER_CONF = None  # don't limit plugin types in link blocks
 
 OR  add the 'cmsplugin_menus link block' entry directly:
+
 CMS_PLACEHOLDER_CONF = { ..., 'cmsplugin_menus link block': { ... }, ... }
 
 Kudos
