@@ -8,9 +8,9 @@ else:
 # patch settings 
 try:
     from django.conf import settings
-    if 'cmsplugin_menus.linkblock' in settings.INSTALLED_APPS or \
-       'cmsplugin_menus.navigation' in settings.INSTALLED_APPS or \
-       'cmsplugin_menus.sitemap' in settings.INSTALLED_APPS :
+    if 'cmsplugin_menus.plugins.linkblock' in settings.INSTALLED_APPS or \
+       'cmsplugin_menus.plugins.navigation' in settings.INSTALLED_APPS or \
+       'cmsplugin_menus..plugins.sitemap' in settings.INSTALLED_APPS :
         from conf import patch_settings
         patch_settings()
 except ImportError:

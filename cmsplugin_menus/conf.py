@@ -14,7 +14,7 @@ def patch_settings():
     
     ALREADY_PATCHED = True
     
-    from django.conf import settings
+    from django.conf import settings  # load project settings (overrides)
     import default_settings
     import constants
     

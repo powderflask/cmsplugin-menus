@@ -7,6 +7,7 @@ class LinkBlockPlugin(_MenuPluginBase):
     model = LinkBlockPtr
     name = _("Custom Menu")
     render_template = _get_template_path("link_block.html")
+    icon_file = "linkblock.png"
     
     def render(self, context, instance, placeholder):
         context.update({

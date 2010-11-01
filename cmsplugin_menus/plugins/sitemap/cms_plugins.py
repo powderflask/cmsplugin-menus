@@ -8,5 +8,6 @@ class SitemapPlugin(_MenuPluginBase):
     """
     name = _("Sitemap")
     render_template = _get_template_path("sitemap.html")
+    icon_file = "hierarchy.png"
 
 plugin_pool.register_plugin(SitemapPlugin)

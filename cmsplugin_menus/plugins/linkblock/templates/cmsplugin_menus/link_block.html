@@ -5,7 +5,7 @@
     <div class="link-block">
         <div class="title">
             {{ link_block.title }}
-            {% if collapse %} <img src="/media/static/images/icons/expand.png" alt="[+]" title="Hover to expand menu.">{% endif %}
+            {% if collapse %} <img src="{{ MEDIA_URL }}cmsplugin_menus/images/expand.png" alt="[+]" title="Hover to expand menu.">{% endif %}
         </div>
         <div class="links {% if collapse %} collapse{% endif %}">
           {% render_placeholder link_block.links %}

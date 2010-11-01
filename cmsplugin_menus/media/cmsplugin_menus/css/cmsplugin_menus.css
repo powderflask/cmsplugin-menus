@@ -1,0 +1,50 @@
+/* Some ideas for styling link blocks 
+ * You'll definitely want to override these or just define your own!
+ */
+ 
+.link-block {
+    margin: 10px 0;
+    width: 160px;
+    border-bottom: 1px solid #dadada;
+}
+
+.link-block .title {
+    font-family: Verdana, Geneva, sans-serif; 
+    font-size: 1.2em;
+    text-shadow: 2px 2px 3px #999;
+    width: 100%;
+    height: 22px;
+    padding: 4px 0;
+    border-bottom: 1px solid #dadada;
+}
+
+.link-block ul,
+.link-block li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.link-block ul ul li {
+    padding-left: 10px;
+}
+
+
+/* The "Custom Menu" uses a placeholder, so is NOT a list, just a set of anchors! */
+.link-block a {
+    margin-left: 10px;
+    display: block;
+}
+
+/* special styling for selected link in a navigation menu */ 
+.link-block li.selected > a {
+    font-weight: bold;
+}
+
+/* Handle expand / collapse logic using mouse hover - CSS only solution */
+.link-block .collapse {
+    display: none;
+}
+.link-block:hover .collapse {
+    display: block;
+}

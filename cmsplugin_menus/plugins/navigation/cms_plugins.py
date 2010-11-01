@@ -7,7 +7,8 @@ class NavMenuPlugin(_MenuPluginBase):
     model = NavMenu
     name = _("Section Nav. Menu")
     render_template = _get_template_path("nav_menu.html")
-    
+    icon_file = "hierarchy.png"
+
     def render(self, context, instance, placeholder):
         context.update({
             'title': instance.title,

@@ -4,21 +4,26 @@ Django CMS Menus Plugin
 
 The Menus plugins are a collection of pluggable menus for `Django CMS <http://www.django-cms.org/>`_.
 
-Currently this plugin is in development - NOT FOR USE ON PRODUCTION SITES!
+Currently plugin release is ALPHA.  Some limited testing has been done.  Please let me know if you use this module and how it works for you.
 
 Menu types include:
 
 * Custom Menu (Link Block): a re-usable, named block of links and/or snippets.  Useful, for example, for a "Quick Links" block, or other block of links that will be re-used on multiple pages on the site.
 * Section Navigation Menu: display complete, hierarchical navigation (nested lists) for all nodes below a given "root" 
 (any page on site - usually a section page with a child tree).  Useful for adding custom custom navigation blocks.
-
+* Sitemap: simply a complete hierarchical navigation (nested lists) of all pages on the site.
+ 
 Features
 ========
 
-* Link block is simply a model with a name and placeholder - users add links, snippets, or other plugins (set in settings) 
-* Nav. Menu 
-* Both menus have a "collapse" option, which, if selected, adds class="collapse" to the menu so it can be collapsed using JS.
-* JQuery script for handling collapse/expand logic is included
+* Custom Menu: users add links, snippets, or other plugins (set in settings) to placeholder.
+  Custom Menu's are re-usable so the same menu can be placed on several pages.
+* Nav. Menu: user can select which sub-section of site to create menu for, or use current page's root by default.
+* Both menus have a "collapse" option, which, if selected, adds class="collapse" to the menu so it can be collapsed using CSS or JS.
+* CSS handling collapse/expand logic is included
+* Sitemap: template logic only plugin.
+* Easy to override templates and media
+* Can use each plugin independently
 
 Dependencies
 ============
@@ -51,7 +56,36 @@ You can download a zipped archive from http://github.com/powderflask/cmsplugin-m
 
 Unzip the file you downloaded. Then go in your terminal and ``cd`` into the unpacked folder. Then type ``python setup.py install`` in your terminal.
 
-Put "cmsplugin_menu" in your ``INSTALLED_APPS`` section in settings.py. Don't forget to syncdb your database.
+Configuration
+-------------
+Add one or more cmsplugin_menu plugins to your ``INSTALLED_APPS`` in settings.py:
+
+INSTALLED_APPS = (..., 
+                  cmsplugin_menu.plugins.*,  # installs all menu plugins
+                  )  
+
+OR  pick and choose:
+INSTALLED_APPS = (...,
+                  cmsplugin_menu.plugins.linkblock,
+                  cmsplugin_menu.plugins.navigation,
+                  cmsplugin_menu.plugins.sitemap,
+                 )
+                 
+Don't forget to syncdb.
+
+Media
+-----
+Media files for the plugins are expected at: {{ MEDIA_URL }}cmsplugin_menus/
+
+In your MEDIA_ROOT, copy or link the cmsplugin_menus media: 
+
+* ln -s /path/to/cmsplugin_menus/media/cmsplugin_menus
+
+If you want to use the default CSS, which provides basic styles and expand/collapse logic,
+include a link to the css file in your base template (or whichever template will have the menu plugins on them):
+
+* <link rel="stylesheet" type="text/css" href='{{ MEDIA_URL }}cmsplugin_menus/css/cmsplugin_menu.css 'media="all" />
+
 
 Settings
 ========
@@ -61,7 +95,7 @@ No settings are required, however, some default settings can be overridden:
 * CMSPLUGIN_MENUS_TEXT_ENABLED = False by default.  Set to True if menus should be available as text plugin.
 
 * CMSPLUGIN_MENUS_PLACEHOLDER_CONF  Limits which plugins are allowed within a Custom Menu (link block)
-You can overide this setting to change the defaults (LinkPlugin and SnippetPlugin) in your settings like this:
+You can override this setting to change the defaults (LinkPlugin and SnippetPlugin) in your settings like this:
 
 CMSPLUGIN_MENUS_PLACEHOLDER_CONF = {
         'cmsplugin_menus link block': {
@@ -69,5 +103,13 @@ CMSPLUGIN_MENUS_PLACEHOLDER_CONF = {
                 'name': gettext("links")
 }}
 
-OR  add the 'cmsplugin_menus link block' entry to your CMS_PLACEHOLDER_CONF.
+OR 
+CMSPLUGIN_MENUS_PLACEHOLDER_CONF = None  # don't limit plugin types in link blocks
 
+OR  add the 'cmsplugin_menus link block' entry directly:
+CMS_PLACEHOLDER_CONF = { ..., 'cmsplugin_menus link block': { ... }, ... }
+
+Kudos
+=====
+
+* icons from the fabulous famfamfam silk icon set: http://www.famfamfam.com/lab/icons/silk/
