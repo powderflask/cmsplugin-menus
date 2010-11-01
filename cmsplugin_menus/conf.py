@@ -1,4 +1,3 @@
-from django.conf import settings
 
 ALREADY_PATCHED = False
 
@@ -15,8 +14,9 @@ def patch_settings():
     
     ALREADY_PATCHED = True
     
-    from cmsplugin_menus.conf import default_settings
-    # patch settings
+    from django.conf import settings
+    import default_settings
+    import constants
     
     # merge with default menus settings
     for attr in dir(default_settings):
@@ -24,7 +24,7 @@ def patch_settings():
             setattr(settings._wrapped, attr, getattr(default_settings, attr))
 
     # Limit plugins in Link Blocks (unless overridden)
-    if settings.CMSPLUGIN_MENUS_LINK_BLOCK_PLACEHOLDER not in settings.CMS_PLACEHOLDER_CONF \
+    if constants.CMSPLUGIN_MENUS_LINK_BLOCK_PLACEHOLDER not in settings.CMS_PLACEHOLDER_CONF \
         and settings.CMSPLUGIN_MENUS_PLACEHOLDER_CONF:
         settings.CMS_PLACEHOLDER_CONF.update(settings.CMSPLUGIN_MENUS_PLACEHOLDER_CONF)
         
