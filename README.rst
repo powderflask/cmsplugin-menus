@@ -60,12 +60,14 @@ No settings are required, however, some default settings can be overridden:
 
 * CMSPLUGIN_MENUS_TEXT_ENABLED = False by default.  Set to True if menus should be available as text plugin.
 
-* CMS_PLACEHODER_CONF  Limits which plugins are allowed within a Custom Menu (link block)
+* CMSPLUGIN_MENUS_PLACEHOLDER_CONF  Limits which plugins are allowed within a Custom Menu (link block)
 You can overide this setting to change the defaults (LinkPlugin and SnippetPlugin) in your settings like this:
 
-CMS_PLACEHOLDER_CONF = {
-    ...
-    'link-block': {
-            'plugins': ('LinkPlugin', 'SnippetPlugin', ...),
-            'name': gettext("Link Block")
+CMSPLUGIN_MENUS_PLACEHOLDER_CONF = {
+        'cmsplugin_menus link block': {
+                'plugins': ('LinkPlugin', 'SnippetPlugin', ...),
+                'name': gettext("links")
 }}
+
+OR  add the 'cmsplugin_menus link block' entry to your CMS_PLACEHOLDER_CONF.
+

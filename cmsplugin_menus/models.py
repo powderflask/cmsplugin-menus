@@ -13,13 +13,14 @@ class LinkBlock(models.Model):
      A placeholder to be used for building a re-usable block of links. 
      To limit plugins to links, relies on setting:
      CMS_PLACEHOLDER_CONF = {
-        'link-block': {
+        ...
+        'cmsplugin_menus link block': {
                 'plugins': ('LinkPlugin', 'SnippetPlugin', ...),
                 'name': gettext("links")
         }}
     """
     title = models.CharField(_("menu title"), max_length=255, unique=True, db_index=True)
-    links = PlaceholderField("custom link block", help_text=_("Add links, e-mails, snippets to the menu."))
+    links = PlaceholderField(settings.CMSPLUGIN_MENUS_LINK_BLOCK_PLACEHOLDER, help_text=_("Add links, e-mails, snippets to the menu."))
 
     def __unicode__(self):
         return self.title
