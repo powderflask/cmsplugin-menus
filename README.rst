@@ -60,15 +60,15 @@ Configuration
 Add one or more cmsplugin_menu plugins to your ``INSTALLED_APPS`` in settings.py:
 
 INSTALLED_APPS = (..., 
-                  cmsplugin_menu.plugins.*,  # installs all menu plugins
+                  cmsplugin_menus.plugins.*,  # installs all menu plugins
                  )  
 
 OR  pick and choose:
 
 INSTALLED_APPS = (...,
-                  cmsplugin_menu.plugins.linkblock,
-                  cmsplugin_menu.plugins.navigation,
-                  cmsplugin_menu.plugins.sitemap,
+                  cmsplugin_menus.plugins.linkblock,
+                  cmsplugin_menus.plugins.navigation,
+                  cmsplugin_menus.plugins.sitemap,
                  )
                  
 Don't forget to syncdb.
