@@ -73,6 +73,21 @@ INSTALLED_APPS = (...,
                  
 Don't forget to syncdb.
 
+Templates
+---------
+Recommended to use the app_directories template loader::
+
+    TEMPLATE_LOADERS = (
+        'django.template.loaders.filesystem.Loader',
+        'django.template.loaders.app_directories.Loader',
+        ...
+    )
+
+If you aren't using the app_directories template loader, you will need to add the
+templates to your TEMPLATE_DIRS settings.  The templates are at:
+   cmsplugin_menus/plugins/<plugin-name>/templates
+and can be overridden by adding a "cmsplugin_menus" folder to your project templates directory.
+    
 Media
 -----
 Media files for the plugins are expected at: {{ MEDIA_URL }}cmsplugin_menus/
@@ -102,15 +117,20 @@ CMSPLUGIN_MENUS_PLACEHOLDER_CONF = {
         'cmsplugin_menus link block': {
                 'plugins': ('LinkPlugin', 'SnippetPlugin', ...),
                 'name': gettext("links")
-}}
+        }}
 
 OR 
 
-CMSPLUGIN_MENUS_PLACEHOLDER_CONF = None  # don't limit plugin types in link blocks
+CMSPLUGIN_MENUS_PLACEHOLDER_CONF = None  
+    # don't limit plugin types in link blocks
 
 OR  add the 'cmsplugin_menus link block' entry directly:
 
-CMS_PLACEHOLDER_CONF = { ..., 'cmsplugin_menus link block': { ... }, ... }
+CMS_PLACEHOLDER_CONF = { 
+    ..., 
+    'cmsplugin_menus link block': { ... },
+    ... 
+    }
 
 Kudos
 =====
