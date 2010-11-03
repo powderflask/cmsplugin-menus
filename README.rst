@@ -57,19 +57,19 @@ Unzip the file you downloaded. Then go in your terminal and ``cd`` into the unpa
 
 Configuration
 -------------
-Add one or more cmsplugin_menu plugins to your ``INSTALLED_APPS`` in settings.py:
+Add one or more cmsplugin_menu plugins to your ``INSTALLED_APPS`` in settings.py::
 
-INSTALLED_APPS = (..., 
-                  cmsplugin_menus.plugins.*,  # installs all menu plugins
-                 )  
+    INSTALLED_APPS = (..., 
+        cmsplugin_menus.plugins.*,  # installs all menu plugins
+    )  
 
-OR  pick and choose:
+OR  pick and choose::
 
-INSTALLED_APPS = (...,
-                  cmsplugin_menus.plugins.linkblock,
-                  cmsplugin_menus.plugins.navigation,
-                  cmsplugin_menus.plugins.sitemap,
-                 )
+    INSTALLED_APPS = (...,
+        cmsplugin_menus.plugins.linkblock,
+        cmsplugin_menus.plugins.navigation,
+        cmsplugin_menus.plugins.sitemap,
+    )
                  
 Don't forget to syncdb.
 
@@ -84,22 +84,24 @@ Recommended to use the app_directories template loader::
     )
 
 If you aren't using the app_directories template loader, you will need to add the
-templates to your TEMPLATE_DIRS settings.  The templates are at:
+templates to your TEMPLATE_DIRS settings.  The templates are at::
+
    cmsplugin_menus/plugins/<plugin-name>/templates
+
 and can be overridden by adding a "cmsplugin_menus" folder to your project templates directory.
     
 Media
 -----
 Media files for the plugins are expected at: {{ MEDIA_URL }}cmsplugin_menus/
 
-In your MEDIA_ROOT, copy or link the cmsplugin_menus media: 
+In your MEDIA_ROOT, copy or link the cmsplugin_menus media:: 
 
-* ln -s /path/to/cmsplugin_menus/media/cmsplugin_menus
+    ln -s /path/to/cmsplugin_menus/media/cmsplugin_menus
 
 If you want to use the default CSS, which provides basic styles and expand/collapse logic,
-include a link to the css file in your base template (or whichever template will have the menu plugins on them):
+include a link to the css file in your base template (or whichever template will have the menu plugins on them)::
 
-* <link rel="stylesheet" type="text/css" href='{{ MEDIA_URL }}cmsplugin_menus/css/cmsplugin_menu.css' 'media="all" />
+    <link rel="stylesheet" type="text/css" href='{{ MEDIA_URL }}cmsplugin_menus/css/cmsplugin_menu.css' 'media="all" />
 
 
 Settings
@@ -107,29 +109,28 @@ Settings
 
 No settings are required, however, some default settings can be overridden:
 
-* CMSPLUGIN_MENUS_TEXT_ENABLED = False by default.  Set to True if menus should be available as text plugin.
+* CMSPLUGIN_MENUS_TEXT_ENABLED = False # by default.  Set to True if menus should be available as text plugin.
 
 * CMSPLUGIN_MENUS_PLACEHOLDER_CONF  Limits which plugins are allowed within a Custom Menu (link block)
 
-You can override this setting to change the defaults (LinkPlugin and SnippetPlugin) in your settings like this:
+You can override this setting to change the defaults (LinkPlugin and SnippetPlugin) in your settings like this::
 
-CMSPLUGIN_MENUS_PLACEHOLDER_CONF = {
+    CMSPLUGIN_MENUS_PLACEHOLDER_CONF = {
         'cmsplugin_menus link block': {
                 'plugins': ('LinkPlugin', 'SnippetPlugin', ...),
                 'name': gettext("links")
-        }}
+    }}
 
-OR 
+OR::
 
-CMSPLUGIN_MENUS_PLACEHOLDER_CONF = None  
-    # don't limit plugin types in link blocks
+    CMSPLUGIN_MENUS_PLACEHOLDER_CONF = None  # don't limit plugin types in link blocks
 
-OR  add the 'cmsplugin_menus link block' entry directly:
+OR  add the 'cmsplugin_menus link block' entry directly::
 
-CMS_PLACEHOLDER_CONF = { 
-    ..., 
-    'cmsplugin_menus link block': { ... },
-    ... 
+    CMS_PLACEHOLDER_CONF = { 
+        ..., 
+        'cmsplugin_menus link block': { ... },
+        ... 
     }
 
 Kudos
