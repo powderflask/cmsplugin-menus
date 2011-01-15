@@ -27,11 +27,12 @@ Features
 Dependencies
 ============
 
-None (other than django-cms itself)
+django-cms 2.1+
 
 License
 =======
-GNU General Public License - see `LICENSE <http://github.com/powderflask/cmsplugin-menus/blob/master/LICENSE>`_
+    Copyright (C) 2010  Driftwood Cove Designs
+    See the `LICENSE <http://github.com/powderflask/cmsplugin-menus/blob/master/LICENSE>`_ for more details
 
 You are free to copy, use, or modify this software in any way you like, but please provide attribution to the original author with a link to:
 http://github.com/powderflask/cmsplugin-menus
@@ -39,6 +40,12 @@ http://github.com/powderflask/cmsplugin-menus
 Author
 ------
 `Driftwood Cove Designs <http://designs.driftwoodcove.ca>`_
+
+Known Issues
+============
+
+see: https://github.com/powderflask/cmsplugin-menus/issues
+
 
 Installation
 ============
@@ -60,15 +67,15 @@ Configuration
 Add one or more cmsplugin_menu plugins to your ``INSTALLED_APPS`` in settings.py::
 
     INSTALLED_APPS = (..., 
-        cmsplugin_menus.plugins.*,  # installs all menu plugins
+        'cmsplugin_menus.plugins.*',  # installs all menu plugins
     )  
 
 OR  pick and choose::
 
     INSTALLED_APPS = (...,
-        cmsplugin_menus.plugins.linkblock,
-        cmsplugin_menus.plugins.navigation,
-        cmsplugin_menus.plugins.sitemap,
+        'cmsplugin_menus.plugins.linkblock',
+        'cmsplugin_menus.plugins.navigation',
+        'cmsplugin_menus.plugins.sitemap',
     )
                  
 Don't forget to syncdb.

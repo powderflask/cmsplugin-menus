@@ -1,1 +1,3 @@
+include LICENSE
+include README.rst
 graft cmsplugin_menus/templates
