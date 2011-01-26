@@ -7,7 +7,7 @@ class NavMenu(CMSPlugin):
     """
        Plugin model for a sub-section navigation menu
     """
-    title = models.CharField(_("menu title"), max_length=255, unique=True, db_index=True)
+    title = models.CharField(_("menu title"), max_length=255, blank=True, default="", help_text=_("Defaults to section page title if left blank."))
     section = models.ForeignKey(Page, blank=True, null=True, help_text=_("Defaults to the root of current page if left blank."))
     collapse = models.BooleanField(_("collapse menu"), default=False, help_text="Select this option if the menu should initially appear collapsed.")
 
